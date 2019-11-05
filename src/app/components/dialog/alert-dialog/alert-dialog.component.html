@@ -1,0 +1,22 @@
+
+<div class="titulo-modal">
+    <h5 [ngClass]="{'text-success': !error, 'text-danger': error}" >
+    <mat-icon matPrefix class="text-success" style="position: relative;top: 5px;" *ngIf="!error" >check_circle</mat-icon>
+    <mat-icon matPrefix class="text-danger" style="position: relative;top: 5px;" *ngIf="error" >error</mat-icon>
+    {{ title }}
+    </h5>
+</div>
+
+<div class="cuerpo-modal">
+    <mat-dialog-content>
+        <p>
+            {{message}}
+        </p>
+    </mat-dialog-content>
+</div>
+
+<button mat-button color="primary" class="boton-modal-alert" [mat-dialog-close]="true">{{ cancelButtonText }}</button>
+
+<!--<mat-dialog-actions align="end">
+    <button mat-button color="primary" [mat-dialog-close]="true">{{ cancelButtonText }}</button>
+</mat-dialog-actions>-->

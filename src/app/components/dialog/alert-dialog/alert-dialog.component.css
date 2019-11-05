@@ -1,0 +1,13 @@
+.titulo-modal{
+    padding: 10px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.cuerpo-modal{
+    padding: 10px;
+    color: #696969;
+}
+
+.boton-modal-alert{
+    width: 100%;
+}

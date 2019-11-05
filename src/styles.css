@@ -1,0 +1,166 @@
+/* You can add global styles to this file, and also import other style files */
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #f4f9fb!important; }
+
+.primary {
+    color: #037cad!important;
+}
+
+.border-primary{
+    color: #037cad!important;
+}
+
+.mat-fab.mat-primary, .mat-flat-button.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary{
+  background-color: #037cad!important;
+}
+
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary{
+  color: #037cad!important;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.fast {
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+.warning-snackbar {
+  background: #fff;
+  color: #000!important;
+  border: 2px solid #f44336;
+}
+
+.mat-simple-snackbar-action{
+  color: #000!important;
+}
+
+.color-light-link{
+  color: rgb(6, 123, 173)!important;
+  font-size: 14px;
+}
+
+.color-light-link:hover{
+  color: rgb(8, 167, 234)!important;
+}
+
+.color-light-link:active{
+  color: rgb(6, 123, 173)!important;
+}
+
+.position-icon{
+  font-size: 16px;
+  font-weight: bold;
+  position: relative;
+  top: 3px;
+}
+
+.color-dark{
+  color:#484848!important;
+}
+
+.color-light{
+  color: rgb(6, 123, 173)!important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.max-width-card-material {
+  width: auto;
+  margin: 0 auto;
+}
+
+.max-width-card {
+  max-height: auto;
+  overflow-y: auto;
+}
+
+@media (max-width: 1366px) {
+  .max-width-card-material {
+    width: 940px;
+  }
+
+  .max-width-card {
+    height: 561px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .max-width-card {
+    height: 573px;
+  }
+}
+
+@media (max-width: 991px) {
+  .max-width-card {
+    height: 429px;
+  }
+}
+
+@media (max-width: 767px) {
+  .max-width-card {
+    height: 322px;
+  }
+}
+
+@media (max-width: 576px) {
+  .max-width-card {
+    height: auto;
+  }
+
+  .card-ocultar{
+    display: none!important;
+  }
+}
+
+.mat-errors{
+  color: #f44336;
+  font-size: 75%;
+  margin-top: 13px;
+  position: absolute;
+}
+
+.mat-dialog-container{
+  padding: 0!important;
+  overflow-x: hidden!important;
+  }
+  
