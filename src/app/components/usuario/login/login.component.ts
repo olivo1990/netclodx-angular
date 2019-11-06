@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  emailFormControl = new FormControl('', [
+  usuarioFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);

@@ -29,14 +29,16 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/mdbootstrap/js/mdb.min.js",
               "node_modules/font-awesome/scss/font-awesome.scss",
+              "node_modules/admin-lte-css/dist/css/AdminLTE.css",
+              "node_modules/admin-lte-css/dist/css/skins/_all-skins.css",
               "node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss",
-              "node_modules/angular-bootstrap-md/assets/scss/mdb.scss"
+              "node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
+              "node_modules/mdbootstrap/css/mdb.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.slim.min.js",
               "node_modules/popper.js/dist/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/mdbootstrap/css/mdb.min.css",
               "node_modules/chart.js/dist/Chart.js",
               "node_modules/hammerjs/hammer.min.js"
             ]

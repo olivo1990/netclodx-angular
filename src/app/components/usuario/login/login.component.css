@@ -7,6 +7,10 @@
   width: 100%;
 }
 
+.logo-login{
+  padding: 30px;
+}
+
 input{
   padding: 3px;
 }
@@ -177,6 +181,16 @@ input{
   left: 18%;
 }
 
+.footer-login{
+  position: absolute;
+  bottom: 0;
+  padding: 20px;
+  width: 100%;
+  text-align: left;
+  font-size: 12px;
+  color: rgb(72, 72, 72);
+  background: #fff;
+}
 
 @keyframes circle-move {
   0% {
@@ -189,3 +203,4 @@ input{
     transform: rotate(0deg);
   }
 }
+
