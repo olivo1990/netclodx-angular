@@ -11,7 +11,7 @@ import { URL_SERVICE } from '../config/config';
 export class UsuarioService {
 
   private usuario:Usuario;
-  private urlEndPoint = URL_SERVICE + '/api/usuarios';
+  private urlEndPoint = URL_SERVICE;
 
   constructor(private http: HttpClient, private router: Router) {
   }
@@ -26,7 +26,7 @@ export class UsuarioService {
 
   registrar(usuario: Usuario): Observable<Usuario> {
 
-    return this.http.post(`${this.urlEndPoint}/registrar`, usuario, { })
+    return this.http.post(`${this.urlEndPoint}/api/usuarios/registrar`, usuario, { })
       .pipe(
         map((response: any) => response.usuario as Usuario),
         catchError(e => {
@@ -44,5 +44,23 @@ export class UsuarioService {
         })
       );
    }
+
+   login(usuario: Usuario): Observable<any> {
+    const urlEndpoint = this.urlEndPoint+'/oauth/token';
+
+    const credenciales = btoa('angularapp' + ':' + '12345');
+
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Basic ' + credenciales
+    });
+
+    let params = new URLSearchParams();
+    params.set('grant_type', 'password');
+    params.set('username', usuario.username);
+    params.set('password', usuario.password);
+    console.log(params.toString());
+    return this.http.post<any>(urlEndpoint, params.toString(), { headers: httpHeaders });
+  }
 
 }

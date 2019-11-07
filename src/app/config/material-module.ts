@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
     
@@ -20,7 +21,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     MatGridListModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule
   ]
 })
 

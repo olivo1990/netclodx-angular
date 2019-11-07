@@ -5,7 +5,7 @@ export class Usuario {
     documento:number;
     codigo:number;
     telefono:number;
-    usuario:string;
+    username:string;
     password:string;
     correo:string;
     fechaNacimiento:string;
