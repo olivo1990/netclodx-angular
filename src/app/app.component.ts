@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './config/route-animation';
 
@@ -8,10 +8,16 @@ import { slideInAnimation } from './config/route-animation';
   styleUrls: ['./app.component.css'],
   animations: [ slideInAnimation ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'project-angular';
+
+  constructor(){}
 
   prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }
+
+  ngOnInit() {
+
   }
 }

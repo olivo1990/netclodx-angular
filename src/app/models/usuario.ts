@@ -11,4 +11,5 @@ export class Usuario {
     fechaNacimiento:string;
     direccion:string;
     tipoEmpleado:number;
+    perfiles: string[] = [];
 }

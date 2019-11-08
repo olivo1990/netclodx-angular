@@ -1,0 +1,83 @@
+<mat-toolbar color="primary" *ngIf="isLoggedIn$ | async as isLoggedIn">
+    <mat-toolbar-row>
+
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>menu</mat-icon>
+        </button>
+
+        <mat-toolbar-row>
+            <a _ngcontent-ewb-c494="" mat-button="" [routerLink]="['/inicio']" aria-label="Angular Material" class="docs-button mat-button mat-button-base" tabindex="0" aria-disabled="false" href="/"><span class="mat-button-wrapper"><img _ngcontent-ewb-c494="" src="../../../assets/imgs/logos/LogoColor_fondo_transparente3.png" alt="netclodx" style="width: 100px;position: relative;bottom: 5px;"></span><div matripple="" class="mat-button-ripple mat-ripple"></div><div class="mat-button-focus-overlay"></div></a>
+        </mat-toolbar-row>
+        
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="vertebrates"><mat-icon>dialpad</mat-icon> Vertebrates</button>
+            <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
+        </mat-menu>
+        
+        <mat-menu #vertebrates="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+        <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+        <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+        <button mat-menu-item>Birds</button>
+        <button mat-menu-item>Mammals</button>
+        </mat-menu>
+        
+        <mat-menu #invertebrates="matMenu">
+        <button mat-menu-item>Insects</button>
+        <button mat-menu-item>Molluscs</button>
+        <button mat-menu-item>Crustaceans</button>
+        <button mat-menu-item>Corals</button>
+        <button mat-menu-item>Arachnids</button>
+        <button mat-menu-item>Velvet worms</button>
+        <button mat-menu-item>Horseshoe crabs</button>
+        </mat-menu>
+        
+        <mat-menu #fish="matMenu">
+        <button mat-menu-item>Baikal oilfish</button>
+        <button mat-menu-item>Bala shark</button>
+        <button mat-menu-item>Ballan wrasse</button>
+        <button mat-menu-item>Bamboo shark</button>
+        <button mat-menu-item>Banded killifish</button>
+        </mat-menu>
+        
+        <mat-menu #amphibians="matMenu">
+        <button mat-menu-item>Sonoran desert toad</button>
+        <button mat-menu-item>Western toad</button>
+        <button mat-menu-item>Arroyo toad</button>
+        <button mat-menu-item>Yosemite toad</button>
+        </mat-menu>
+        
+        <mat-menu #reptiles="matMenu">
+        <button mat-menu-item>Banded Day Gecko</button>
+        <button mat-menu-item>Banded Gila Monster</button>
+        <button mat-menu-item>Black Tree Monitor</button>
+        <button mat-menu-item>Blue Spiny Lizard</button>
+        <button mat-menu-item disabled>Velociraptor</button>
+        </mat-menu>
+    
+    
+        <!-- Copyright 2019 Google LLC. All Rights Reserved.
+            Use of this source code is governed by an MIT-style license that
+            can be found in the LICENSE file at http://angular.io/license -->
+        
+        
+        <!-- Copyright 2019 Google LLC. All Rights Reserved.
+            Use of this source code is governed by an MIT-style license that
+            can be found in the LICENSE file at http://angular.io/license -->
+
+        <span class="example-spacer"></span>
+        <!-- <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
+        <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>-->
+        <button mat-button [matMenuTriggerFor]="menuSesion">{{ nombreUsuario }}<mat-icon aria-hidden="true" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" style="position: relative;bottom: 2px;">arrow_drop_down</mat-icon></button>
+        <mat-menu #menuSesion="matMenu">
+        <button mat-menu-item>Cambiar contraseña</button>
+        <button mat-menu-item (click)="cerrarSesion()" *ngIf="isLoggedIn">Cerrar sesión</button>
+        </mat-menu>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+
+
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->

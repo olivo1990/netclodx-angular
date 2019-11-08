@@ -47,13 +47,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 }
 
 .warning-snackbar {
-  background: #fff;
-  color: #000!important;
-  border: 2px solid #f44336;
+
+  background: #ffc107!important;
+  color: #fbf9f9!important;
+  font-weight: bold;
+
+}
+
+.success-snackbar{
+  background: #28a745!important;
+  color: #fbf9f9!important;
+  font-weight: bold;
 }
 
 .mat-simple-snackbar-action{
-  color: #000!important;
+  color: #fff!important;
 }
 
 .color-light-link{
@@ -167,4 +175,45 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
   background-color: #08b0f7;
 }
+
+.contenido-componente{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 98%;
+}
+
+.tarjeta{
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+  background-color: #fff;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  border-radius: 2px;
+  border-top: 3px solid #d2d6de;
+}
+
+.tarjeta-titulo{
+  color: #444;
+  display: block;
+  padding: 5px;
+  position: relative;
+  text-align: left;
+}
+
+.tarjeta-titulo.tarjeta-border-bottom {
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.tarjeta-cuerpo{
+    padding: 5px;
+}
+
+.tarjeta-cuerpo.tarjeta-border-left-right {
+  border-right: 1px solid #f4f4f4;
+  border-left: 1px solid #f4f4f4;
+}
+
+
   

@@ -18,7 +18,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/usuario/login/login.component';
 import { AlertDialogComponent } from './components/dialog/alert-dialog/alert-dialog.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { AppheaderComponent } from './components/appheader/appheader.component';
+import { InicioComponent } from './components/inicio/inicio.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AppheaderComponent } from './components/appheader/appheader.component';
     LoginComponent,
     AlertDialogComponent,
     FooterComponent,
-    AppheaderComponent
+    InicioComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -43,7 +45,13 @@ import { AppheaderComponent } from './components/appheader/appheader.component';
     BoxModule
   ],
   providers: [UsuarioService],
-  bootstrap: [AppComponent],
-  entryComponents: [AlertDialogComponent],
+  bootstrap: [
+    AppComponent,
+    HeaderComponent
+  ],
+  entryComponents: [
+    AlertDialogComponent,
+    HeaderComponent
+  ],
 })
 export class AppModule { }

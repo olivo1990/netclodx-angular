@@ -6,6 +6,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { UsuarioService } from '../../../services/usuario-service.service';
 import { MatDialog } from '@angular/material';
 import { AlertDialogComponent } from '../../dialog//alert-dialog/alert-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit {
   crearCuenta:boolean = false;
   ocultarOverlay:boolean = false;
 
-  constructor(private router:Router, private route:ActivatedRoute, private authService: UsuarioService, private dialog: MatDialog) {
+  constructor(private router:Router, private route:ActivatedRoute, private authService: UsuarioService, private dialog: MatDialog,private _snackBar: MatSnackBar) {
     this.usuario = new Usuario();
     //setTimeout(function(){ this.ocultarOverlay = true; }, 3000);
 
@@ -48,27 +49,27 @@ export class LoginComponent implements OnInit {
         this.ocultarOverlay = true;
       }
     });
+
+    if(this.authService.isAuthenticated()){
+      this.router.navigate(['/inicio']);
+    }
   }
 
   login():void{
 
-    let titulo:string = "Error del servidor";
-    let mensaje:string = "Ocurrió un error inesperado!";
-
-    console.log("hola");
+    let titulo:string = "";
+    let mensaje:string = "";
 
     this.authService.login(this.usuario).subscribe(response => {
-      console.log(response);
 
-      /*this.authService.guardarUsuario(response.access_token);
+      this.authService.guardarUsuario(response.access_token);
       this.authService.guardarToken(response.access_token);
       let usuario = this.authService.usuario;
-      this.router.navigate(['/clientes']);
-      swal('Login', `Hola ${usuario.username}, has iniciado sesión con éxito!`, 'success');*/
       
       titulo = "Muy bien!";
-      mensaje = "Es un honor que puedas ingresar!";
-      this.openAlertDialog(titulo, mensaje, false);
+      mensaje = "Bienvenido "+usuario.nombre+" "+usuario.apellido;
+      //this.openAlertDialog(titulo, mensaje, false);
+      this.openSnackBar(mensaje);
       this.router.navigate(['/inicio']);
 
     }, err => {
@@ -109,6 +110,14 @@ export class LoginComponent implements OnInit {
           cancel: 'Cerrar'
         }
       },
+    });
+  }
+
+  openSnackBar(message:string) {
+    this._snackBar.open(message, "Cerrar", {
+      duration: 5 * 1000,
+      panelClass: ['success-snackbar'],
+      verticalPosition: 'top'
     });
   }
 
