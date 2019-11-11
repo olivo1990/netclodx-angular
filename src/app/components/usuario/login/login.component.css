@@ -84,12 +84,12 @@ input{
 
 .container {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   top: 20%;
-  left: 13%;
+  left: 7%;
 }
 
 .circle-wrapper {
@@ -150,7 +150,7 @@ input{
   border: 15px solid;
   border-color: rgba(21, 167, 235, .7) rgba(21, 167, 235, .7) transparent transparent;
   border-radius: 50%;
-  box-sizing: content-box; 
+  box-sizing: content-box;
   height: 98px;
   width: 98px;
   position: absolute;
@@ -178,7 +178,7 @@ input{
   border-color: rgba(209, 25, 230, .3) transparent transparent;
   border-radius: 50%;
   box-shadow: 15px 0 25px -20px rgba(0, 0, 0, 0.65);
-  box-sizing: content-box; 
+  box-sizing: content-box;
   height: 90px;
   width: 90px;
   position: absolute;
@@ -225,4 +225,3 @@ input{
     transform: rotate(0deg);
   }
 }
-

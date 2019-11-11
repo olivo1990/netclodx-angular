@@ -1,62 +1,63 @@
 <div class="my-5 mx-auto content-login">
     <div class="row">
         <!--<div class="col-md-12">-->
-        <mat-card class="example-card" style="width: 500px;">
+        <mat-card class="example-card" style="width: 430px;">
 
                 <!--</div>
                 <div class="user-line">
                     <mat-icon matPrefix class="color-dark" style="font-size: 50px;position: relative;left: 10%;">person_outline</mat-icon>
                 </div>-->
                 <mat-card-content>
-                       
-                        <div class="text-center logo-login" style="position: relative;top: 17px;">
-                          <img src="../../../../assets/imgs/logos/LogoColor_fondo_transparente1.png" alt="" style="width:200px">
-                        </div>
 
-                        <div class="mx-auto my-2 p-5">
+                  <div class="text-center logo-login" style="position: relative;top: 17px;">
+                    <img src="../../../../assets/imgs/logos/netclodx_logo_nube_letras.png" alt="" style="width:310px">
+                  </div>
 
-                            <h1 class="mat-h2 text-left color-dark">{{ titulo }}</h1>
-                            <form method="post">
+                  <div class="mx-auto my-2 p-4">
 
-                                <div class="example-container">
-                                    <mat-form-field class="example-full-width">
-                                        <mat-icon matPrefix class="rellenar color-dark" [ngStyle]="{'color':!usuarioFormControl.hasError('required') ? '#f44236' : '#484848' }">person</mat-icon>
-                                        <input [(ngModel)]="usuario.username" type="text" name="usuario" id="usuario" matInput placeholder="Usuario" required [formControl]="usuarioFormControl" [errorStateMatcher]="matcher">
-                                        <mat-error *ngIf="usuarioFormControl.hasError('required')">
-                                            El usuario es <strong>requerido</strong>
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
+                      <h1 class="mat-h2 text-left color-dark">{{ titulo }}</h1>
+                      <form method="post">
 
-                                <div class="example-container">
-                                    <mat-form-field>
-                                        <mat-icon matPrefix class="rellenar color-dark" [ngStyle]="{'color':!passwordFormControl.hasError('required') ? '#f44236' : '#484848' }">lock</mat-icon>
-                                        <input [(ngModel)]="usuario.password" [type]="hide ? 'password' : 'text'" name="password" id="password" matInput placeholder="Password" required [formControl]="passwordFormControl" [errorStateMatcher]="matcher">
-                                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                                            <mat-icon matSuffix class="color-dark">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                        </button>
-                                        <mat-error *ngIf="passwordFormControl.hasError('required')">
-                                            El password es <strong>requerido</strong>
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
+                          <div class="example-container">
+                              <mat-form-field class="example-full-width">
+                                  <mat-icon matPrefix class="rellenar color-dark" [ngStyle]="{'color':!usuarioFormControl.hasError('required') ? '#f44236' : '#484848' }">person</mat-icon>
+                                  <input [(ngModel)]="usuario.username" type="text" name="usuario" id="usuario" matInput placeholder="Usuario" required [formControl]="usuarioFormControl" [errorStateMatcher]="matcher">
+                                  <mat-error *ngIf="usuarioFormControl.hasError('required')">
+                                      El usuario es <strong>requerido</strong>
+                                  </mat-error>
+                              </mat-form-field>
+                          </div>
 
-                                <div class="example-container my-3">
-                                    <button mat-raised-button color="primary" (click)='login()' type="submit">Ingresar</button>
-                                </div>
+                          <div class="example-container">
+                              <mat-form-field>
+                                  <mat-icon matPrefix class="rellenar color-dark" [ngStyle]="{'color':!passwordFormControl.hasError('required') ? '#f44236' : '#484848' }">lock</mat-icon>
+                                  <input [(ngModel)]="usuario.password" [type]="hide ? 'password' : 'text'" name="password" id="password" matInput placeholder="Password" required [formControl]="passwordFormControl" [errorStateMatcher]="matcher">
+                                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                      <mat-icon matSuffix class="color-dark">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                  </button>
+                                  <mat-error *ngIf="passwordFormControl.hasError('required')">
+                                      El password es <strong>requerido</strong>
+                                  </mat-error>
+                              </mat-form-field>
+                          </div>
 
-                                <div class="row">
-                                    <div class="col color-dark" style="font-size: 12px;">
-                                        <mat-checkbox>Recordar password</mat-checkbox>
-                                    </div>
-                                    <div class="col text-right">
-                                        <a [routerLink]="['/recover']" class="badge badge-light color-dark">¿Se te olvidó la contraseña?</a>
-                                    </div>
-                                </div>
+                          <div class="example-container my-3">
+                              <button mat-raised-button color="primary" (click)='login()' type="submit">Ingresar</button>
+                          </div>
 
-                            </form>
-                        </div>
-                    </mat-card-content>
+                          <div class="row">
+                              <div class="col color-dark" style="font-size: 12px;">
+                                  <mat-checkbox>Recordar password</mat-checkbox>
+                              </div>
+                              <div class="col text-right">
+                                  <a [routerLink]="['/recover']" class="badge badge-light color-dark">¿Se te olvidó la contraseña?</a>
+                              </div>
+                          </div>
+
+                      </form>
+                  </div>
+              </mat-card-content>
+              <app-footer></app-footer>
         </mat-card>
     </div>
 </div>

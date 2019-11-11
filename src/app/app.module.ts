@@ -5,13 +5,14 @@ import { MaterialModule } from './config/material-module';
 import { AppRoutingModule } from './config/app-routing.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LayoutModule } from 'angular-admin-lte';    //Loading layout module
 import { BoxModule } from 'angular-admin-lte';       //Box component
 
 //Servicios Providers
-import { UsuarioService } from './services/usuario-service.service'
+import { UsuarioService } from './services/usuario-service.service';
+import { TokenInterceptor } from './services/interceptors/token.interceptor';
 
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -19,7 +20,8 @@ import { LoginComponent } from './components/usuario/login/login.component';
 import { AlertDialogComponent } from './components/dialog/alert-dialog/alert-dialog.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { InicioComponent } from './components/inicio/inicio.component';
-import { HeaderComponent } from './components/header/header.component';
+import { GestorUsuarioComponent } from './components/usuario/gestor-usuario/gestor-usuario.component';
+import { BodyComponent } from './components/body/body.component';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { HeaderComponent } from './components/header/header.component';
     AlertDialogComponent,
     FooterComponent,
     InicioComponent,
-    HeaderComponent,
+    GestorUsuarioComponent,
+    BodyComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -44,14 +47,13 @@ import { HeaderComponent } from './components/header/header.component';
     LayoutModule,
     BoxModule
   ],
-  providers: [UsuarioService],
   bootstrap: [
-    AppComponent,
-    HeaderComponent
+    AppComponent
   ],
   entryComponents: [
-    AlertDialogComponent,
-    HeaderComponent
+    AlertDialogComponent
   ],
+  providers: [UsuarioService,
+  { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
 })
 export class AppModule { }

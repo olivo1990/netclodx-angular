@@ -56,8 +56,6 @@ export class UsuarioService {
         map((response: any) => response.usuario as Usuario),
         catchError(e => {
 
-          console.log(e.status);
-
           if (e.status == 400) {
             return throwError(e);
           }
@@ -90,6 +88,7 @@ export class UsuarioService {
   guardarUsuario(accessToken: string): void {
     let payload = this.obtenerDatosToken(accessToken);
     this._usuario = new Usuario();
+    this._usuario.id = payload.id;
     this._usuario.nombre = payload.nombre;
     this._usuario.apellido = payload.apellido;
     this._usuario.correo = payload.email;
@@ -132,6 +131,7 @@ export class UsuarioService {
     sessionStorage.clear();
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('usuario');
+    sessionStorage.removeItem('menu');
     this.loggedIn.next(false);
   }
 

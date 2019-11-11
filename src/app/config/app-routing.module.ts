@@ -3,10 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from '../components/usuario/login/login.component';
 import { InicioComponent } from '../components/inicio/inicio.component';
 import { AuthGuard } from '../components/usuario/guards/auth.guard';
+import { GestorUsuarioComponent } from '../components/usuario/gestor-usuario/gestor-usuario.component';
 
 const routes: Routes = [
   { path: 'login/:over', component: LoginComponent,data: {animation: 'LoginPage'} },
-  { path: 'inicio', component: InicioComponent,data: {animation: 'inicioPage'}, canActivate:[AuthGuard ] },
+  { path: 'inicio', component: InicioComponent,data: {animation: 'inicioPage'}, canActivate:[AuthGuard]},
+  { path: 'gestor-usuario', component: GestorUsuarioComponent, canActivate:[AuthGuard]},
   { path: '**', pathMatch: 'full', redirectTo: 'login/1' }
 ];
 

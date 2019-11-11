@@ -7,6 +7,7 @@ import { UsuarioService } from '../../../services/usuario-service.service';
 import { MatDialog } from '@angular/material';
 import { AlertDialogComponent } from '../../dialog//alert-dialog/alert-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MenuServiceService } from '../../../services/menu-service.service';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
   crearCuenta:boolean = false;
   ocultarOverlay:boolean = false;
 
-  constructor(private router:Router, private route:ActivatedRoute, private authService: UsuarioService, private dialog: MatDialog,private _snackBar: MatSnackBar) {
+  constructor(private router:Router, private route:ActivatedRoute, private authService: UsuarioService, private dialog: MatDialog,private _snackBar: MatSnackBar, private menuServices: MenuServiceService) {
     this.usuario = new Usuario();
     //setTimeout(function(){ this.ocultarOverlay = true; }, 3000);
 
@@ -55,6 +56,17 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  usuarioFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
+  passwordFormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  matcher = new MyErrorStateMatcher();
+
   login():void{
 
     let titulo:string = "";
@@ -65,10 +77,13 @@ export class LoginComponent implements OnInit {
       this.authService.guardarUsuario(response.access_token);
       this.authService.guardarToken(response.access_token);
       let usuario = this.authService.usuario;
-      
+
+      console.log(usuario);
+
       titulo = "Muy bien!";
       mensaje = "Bienvenido "+usuario.nombre+" "+usuario.apellido;
       //this.openAlertDialog(titulo, mensaje, false);
+      this.consultarMenu(usuario.id);
       this.openSnackBar(mensaje);
       this.router.navigate(['/inicio']);
 
@@ -80,7 +95,7 @@ export class LoginComponent implements OnInit {
         this.openAlertDialog(titulo, mensaje, true);
       }else{
         titulo = "Error del servidor!";
-        mensaje = "Ha ocurrido un error inesperado!";
+        mensaje = "Ha ocurrido un error inesperado";
         this.openAlertDialog(titulo, mensaje, true);
       }
     }
@@ -88,16 +103,23 @@ export class LoginComponent implements OnInit {
 
   }
 
-  usuarioFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  consultarMenu(idUsuario: number):void{
+    this.menuServices.consultarMenu(idUsuario).subscribe(menu => {
+      this.menuServices.guardarMenu(menu);
+      /*let usuario = this.authService.usuario;*/
+    }, error => {
+      if(error.status == 400){
+        this.openAlertDialog("Error del servidor!", "Error desconocido", true);
+        //swal('Error Login', 'Usuario o clave incorrecta', 'error');
+      }
 
-  passwordFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
-  matcher = new MyErrorStateMatcher();
+      if(error.status == 404){
+        this.openAlertDialog("Error del servidor!", "Servicio no encontrado!", true);
+        //swal('Error Login', 'Usuario o clave incorrecta', 'error');
+      }
+    }
+    );
+  }
 
   openAlertDialog(titulo:string, mensaje:string, error:boolean) {
     const dialogRef = this.dialog.open(AlertDialogComponent,{

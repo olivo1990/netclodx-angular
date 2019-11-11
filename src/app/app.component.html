@@ -1,11 +1,61 @@
-<app-header></app-header>
+<mat-toolbar color="primary" *ngIf="isLoggedIn$ | async as isLoggedIn">
+    <mat-toolbar-row>
 
-<div [@routeAnimations]="prepareRoute(outlet)">
-  <router-outlet #outlet="outlet"></router-outlet>
-</div>
+        <button type="button" mat-button (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+        </button>
 
-<!--<div class="container my-3">
-    <router-outlet></router-outlet>   
-</div>-->
+        <span class="example-spacer"></span>
 
-<app-footer></app-footer>
+        <button mat-button [matMenuTriggerFor]="menuSesion">{{ nombreUsuario }}<mat-icon aria-hidden="true" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" style="position: relative;bottom: 2px;">arrow_drop_down</mat-icon></button>
+        <mat-menu #menuSesion="matMenu">
+        <button mat-menu-item>Cambiar contraseña</button>
+        <button mat-menu-item (click)="cerrarSesion()" *ngIf="isLoggedIn">Cerrar sesión</button>
+        </mat-menu>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" closed class="example-sidenav">
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+      <!-- This is the tree node template for leaf nodes -->
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+        <!-- use a disabled button to provide padding for tree leaf -->
+        <button mat-icon-button disabled></button>
+        {{node.name}}
+      </mat-tree-node>
+      <!-- This is the tree node template for expandable nodes -->
+      <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+        <button mat-icon-button matTreeNodeToggle
+                [attr.aria-label]="'toggle ' + node.name">
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+        </button>
+        {{node.name}}
+      </mat-tree-node>
+    </mat-tree>
+   </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <div class="my-3 mx-auto contenido-componente">
+        <div class="tarjeta">
+            <div class="tarjeta-titulo tarjeta-border-bottom">
+                {{ path | titlecase }}
+            </div>
+            <div class="tarjeta-cuerpo tarjeta-border-left-right" style="height: 450px;">
+              <router-outlet></router-outlet>
+
+                <!--<div [@routeAnimations]="prepareRoute(outlet)">
+                  <router-outlet #outlet="outlet"></router-outlet>
+                </div>-->
+
+            </div>
+            <app-footer></app-footer>
+        </div>
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

@@ -12,9 +12,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
+import { MatTreeModule } from '@angular/material/tree';
 
 @NgModule({
-    
+
   exports: [
     BrowserAnimationsModule,
     MatFormFieldModule,
@@ -28,7 +29,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatCheckboxModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTreeModule
   ]
 })
 
