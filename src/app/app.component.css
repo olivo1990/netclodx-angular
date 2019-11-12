@@ -42,7 +42,20 @@
   padding-right: 20px;
 }
 
-.example-sidenav {
-  padding-left: 10px;
-  padding-right: 70px;
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.example-sidenav{
+  width: 20%;
+  background-color: #fafafa;
+}
+
+.mat-toolbar.mat-primary {
+  background: #397b9f;
+  color: #fff;
 }

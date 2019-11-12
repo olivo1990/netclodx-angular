@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Usuario } from '../models/usuario';
 import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { Observable, throwError, BehaviorSubject, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { URL_SERVICE } from '../config/config';
 
@@ -13,8 +13,11 @@ export class UsuarioService {
   private _usuario: Usuario;
   private _token: string;
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private _usuario$:Subject<Usuario>;
 
   constructor(private http: HttpClient, private router: Router) {
+    this._usuario = new Usuario();
+    this._usuario$ = new Subject<Usuario>();
   }
 
   public get isLoggedIn() {
@@ -22,6 +25,19 @@ export class UsuarioService {
   }
 
   public get usuario(): Usuario {
+  
+    if (this._usuario.id !== undefined) {
+      return this._usuario;
+    } else if (this._usuario.id === undefined && sessionStorage.getItem('usuario') != null) {
+      this._usuario = JSON.parse(sessionStorage.getItem('usuario')) as Usuario;
+      return this._usuario;
+    }
+    this._usuario = new Usuario();
+    return this._usuario;
+  }
+
+  /*public get usuario(): Usuario {
+
     if (this._usuario != null) {
       return this._usuario;
     } else if (this._usuario == null && sessionStorage.getItem('usuario') != null) {
@@ -29,7 +45,7 @@ export class UsuarioService {
       return this._usuario;
     }
     return new Usuario();
-  }
+  }*/
 
   public get token(): string {
     if (this._token != null) {
@@ -94,6 +110,7 @@ export class UsuarioService {
     this._usuario.correo = payload.email;
     this._usuario.username = payload.user_name;
     this._usuario.perfiles = payload.authorities;
+    this._usuario$.next(this._usuario);
     sessionStorage.setItem('usuario', JSON.stringify(this._usuario));
   }
 
@@ -119,7 +136,7 @@ export class UsuarioService {
   }
 
   hasRole(role: string): boolean {
-    if (this.usuario.perfiles.includes(role)) {
+    if (this._usuario.perfiles.includes(role)) {
       return true;
     }
     return false;

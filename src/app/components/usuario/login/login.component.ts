@@ -76,14 +76,13 @@ export class LoginComponent implements OnInit {
 
       this.authService.guardarUsuario(response.access_token);
       this.authService.guardarToken(response.access_token);
-      let usuario = this.authService.usuario;
+      this.usuario = this.authService.usuario;
 
-      console.log(usuario);
 
       titulo = "Muy bien!";
-      mensaje = "Bienvenido "+usuario.nombre+" "+usuario.apellido;
+      mensaje = "Bienvenido "+this.usuario.nombre+" "+this.usuario.apellido;
       //this.openAlertDialog(titulo, mensaje, false);
-      this.consultarMenu(usuario.id);
+      this.consultarMenu(this.usuario.id);
       this.openSnackBar(mensaje);
       this.router.navigate(['/inicio']);
 

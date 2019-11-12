@@ -9,6 +9,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LayoutModule } from 'angular-admin-lte';    //Loading layout module
 import { BoxModule } from 'angular-admin-lte';       //Box component
+import { NgMaterialMultilevelMenuModule } from 'ng-material-multilevel-menu';
 
 //Servicios Providers
 import { UsuarioService } from './services/usuario-service.service';
@@ -22,6 +23,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { GestorUsuarioComponent } from './components/usuario/gestor-usuario/gestor-usuario.component';
 import { BodyComponent } from './components/body/body.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -32,7 +35,9 @@ import { BodyComponent } from './components/body/body.component';
     FooterComponent,
     InicioComponent,
     GestorUsuarioComponent,
-    BodyComponent
+    BodyComponent,
+    MenuComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -45,7 +50,8 @@ import { BodyComponent } from './components/body/body.component';
     HttpClientModule,
     NgbModule,
     LayoutModule,
-    BoxModule
+    BoxModule,
+    NgMaterialMultilevelMenuModule
   ],
   bootstrap: [
     AppComponent

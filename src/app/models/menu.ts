@@ -5,4 +5,5 @@ export class Menu{
   estado:boolean;
   icono:string;
   idPadre:number;
+  hijos:any[];
 }
