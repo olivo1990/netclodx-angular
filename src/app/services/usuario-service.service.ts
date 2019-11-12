@@ -13,11 +13,9 @@ export class UsuarioService {
   private _usuario: Usuario;
   private _token: string;
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private _usuario$:Subject<Usuario>;
 
   constructor(private http: HttpClient, private router: Router) {
     this._usuario = new Usuario();
-    this._usuario$ = new Subject<Usuario>();
   }
 
   public get isLoggedIn() {
@@ -26,13 +24,15 @@ export class UsuarioService {
 
   public get usuario(): Usuario {
   
-    if (this._usuario.id !== undefined) {
+    if (this._usuario.id != null) { 
+      console.log(1); 
       return this._usuario;
     } else if (this._usuario.id === undefined && sessionStorage.getItem('usuario') != null) {
+      console.log(2);
       this._usuario = JSON.parse(sessionStorage.getItem('usuario')) as Usuario;
       return this._usuario;
     }
-    this._usuario = new Usuario();
+    this._usuario = new Usuario(); 
     return this._usuario;
   }
 
@@ -110,7 +110,6 @@ export class UsuarioService {
     this._usuario.correo = payload.email;
     this._usuario.username = payload.user_name;
     this._usuario.perfiles = payload.authorities;
-    this._usuario$.next(this._usuario);
     sessionStorage.setItem('usuario', JSON.stringify(this._usuario));
   }
 

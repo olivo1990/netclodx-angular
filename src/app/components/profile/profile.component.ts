@@ -13,12 +13,13 @@ export class ProfileComponent implements OnInit {
   public nombreUsuario:string;
 
   constructor(private authService: UsuarioService) { 
-    this.usuario = new Usuario()
+    this.usuario = new Usuario();
+    this.usuario = this.authService.usuario;
+    this.nombreUsuario = this.usuario.nombre+" "+this.usuario.apellido;
   }
 
   ngOnInit() {
-    this.usuario = this.authService.usuario;
-    this.nombreUsuario = this.usuario.nombre+" "+this.usuario.apellido;
+    
   }
 
 }

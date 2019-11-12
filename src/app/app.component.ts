@@ -44,25 +44,17 @@ export class AppComponent implements OnInit {
           this.path = this.path.replace(re2, " ");
           this.path = this.path.replace(re3, " ");
           this.path = this.path.replace(re4, "");
-      
-          console.log(this.path);
       }
 
-      if (event instanceof NavigationError) {
-          // Hide loading indicator
-
-          // Present error to user
-          console.log(event.error);
-      }
+      this.isLoggedIn$ = this.authService.isLoggedIn;
+      this.usuario = this.authService.usuario;
+      this.nombreUsuario = this.usuario.nombre+" "+this.usuario.apellido;   
   });
     
   }
 
   ngOnInit() {
-    this.isLoggedIn$ = this.authService.isLoggedIn;
-    this.usuario = this.authService.usuario;
-    this.nombreUsuario = this.usuario.nombre+" "+this.usuario.apellido;
-
+    
   }
 
   cerrarSesion():void{
