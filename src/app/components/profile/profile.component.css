@@ -1,3 +1,39 @@
 .profile-content{
-    height: 15%;
+  text-align: center;
+  background-color: #397b9f;
+  color: #fff;
+}
+
+.profile-content>.profile-padding{
+  padding: 10px;
+}
+
+.profile-content>.profile-padding>.profile-image{
+  margin: 0 auto;
+  position: relative;
+  background: #fff;
+  width: 90px;
+  height: 90px;
+  padding: 10px;
+  border-radius: 50%;
+}
+.profile-content>.profile-padding>.profile-image>.profile-ico{
+  color: #484848;
+  font-size: 70px;
+  position: relative;
+  right: 23px;
+}
+
+.profile-content>.profile-padding>.profile-nombre{
+  padding-top: 16px;
+  padding-bottom: 10px; 
+}
+
+.profile-content>.profile-content-button{
+  width: 100%;
+  padding: 5px;
+}
+
+.profile-content>.profile-content-button>.profile-button{
+  font-size: 14px;
 }

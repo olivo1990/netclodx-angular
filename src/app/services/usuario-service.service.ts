@@ -23,16 +23,11 @@ export class UsuarioService {
   }
 
   public get usuario(): Usuario {
-  
-    if (this._usuario.id != null) { 
-      console.log(1); 
-      return this._usuario;
-    } else if (this._usuario.id === undefined && sessionStorage.getItem('usuario') != null) {
-      console.log(2);
+    if (sessionStorage.getItem('usuario') != null) {
       this._usuario = JSON.parse(sessionStorage.getItem('usuario')) as Usuario;
       return this._usuario;
     }
-    this._usuario = new Usuario(); 
+    this._usuario = new Usuario();
     return this._usuario;
   }
 

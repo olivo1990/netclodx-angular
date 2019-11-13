@@ -1,3 +1,17 @@
 <div class="profile-content">
-    {{ nombreUsuario }}
+    <div class="profile-padding">
+      <div class="profile-image">
+        <mat-icon class="profile-ico">person_outline</mat-icon>
+      </div>
+
+      <div class="profile-nombre">
+        {{ nombreUsuario }}
+      </div>
+
+      <button mat-stroked-button class="profile-button" style="margin-right: 1px;">Cambiar contraseña</button>
+    </div>
+    <div class="profile-content-button">
+      
+      <!--<button mat-stroked-button class="profile-button" (click)="cerrarSesion()">Cerrar sesión</button>-->
+    </div>
 </div>

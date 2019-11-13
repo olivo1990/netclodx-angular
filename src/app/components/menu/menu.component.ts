@@ -45,13 +45,13 @@ export class MenuComponent implements OnInit {
   config = {
     paddingAtStart: true,
     classname: 'my-custom-class',
-    listBackgroundColor: '#fafafa',
+    listBackgroundColor: '#f4f9fb',
     fontColor: '#484848',
-    backgroundColor: '#fafafa',
+    backgroundColor: '#f4f9fb',
     selectedListFontColor: 'red',
   };
 
-  constructor(private menuService: MenuServiceService) { 
+  constructor(private menuService: MenuServiceService) {
     this.menu = new Menu();
   }
 
@@ -82,8 +82,8 @@ export class MenuComponent implements OnInit {
       ]
     }
   }
-  
-  
+
+
   crearMenu(idPadreA:number):void{
     if(Object.keys(this.menu).length === 0){
       for (let i in this.menu) {
@@ -124,5 +124,5 @@ export class MenuComponent implements OnInit {
   selectedItem(e):void{
     console.log(e);
   }
-  
+
 }

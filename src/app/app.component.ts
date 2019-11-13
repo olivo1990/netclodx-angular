@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterOutlet, Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { RouterOutlet, Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
 import { slideInAnimation } from './config/route-animation';
-import { Observable } from 'rxjs';
+import { MatSidenav } from '@angular/material/sidenav';
 import { UsuarioService } from './services/usuario-service.service';
 import { Usuario } from './models/usuario';
-
 
 @Component({
   selector: 'app-root',
@@ -13,48 +12,59 @@ import { Usuario } from './models/usuario';
   animations: [ slideInAnimation ]
 })
 export class AppComponent implements OnInit {
+  @ViewChild('sidenav', {static: false}) sidenav: MatSidenav;
   title = 'project-angular';
   public path: string;
   private usuario:Usuario;
-  public isLoggedIn$: Observable<boolean>;
   public nombreUsuario:string;
-  public isLogin:boolean = false;
+  public isLogin:boolean;
   constructor(private router: Router,private authService: UsuarioService) {
 
-    if(!this.authService.isAuthenticated()){
-      this.isLogin = true;
-      console.log(this.isLogin);
-    }
+      let re1 = '-';
+      let re2 = '_';
+      let re3 = '.';
 
-    let re1 = '-';
-    let re2 = '_';
-    let re3 = '.';
-    let re4 = '/';
+      router.events.subscribe( (event: Event) => {
 
-    router.events.subscribe( (event: Event) => {
+        if (event instanceof NavigationStart) {
+            // Show loading indicator
+        }
 
-      if (event instanceof NavigationStart) {
-          // Show loading indicator
-      }
+        if (event instanceof NavigationEnd) {
+            // Hide loading indicator
+            this.isLogin = false;
+            this.path = event.url;
+            this.path = this.path.replace(re1, " ");
+            this.path = this.path.replace(re2, " ");
+            this.path = this.path.replace(re3, " ");
+            let pathArray = this.path.split("/");
+            this.path = "";
+            for (let i in pathArray) {
+                if(isNaN(Number(pathArray[i]))){
+                  if(parseInt(i) > 1){
+                    this.path +="/";
+                  }
+                  this.path += pathArray[i];
+                }
+            }
 
-      if (event instanceof NavigationEnd) {
-          // Hide loading indicator
-          this.path = event.url;
-          this.path = this.path.replace(re1, " ");
-          this.path = this.path.replace(re2, " ");
-          this.path = this.path.replace(re3, " ");
-          this.path = this.path.replace(re4, "");
-      }
+            this.usuario = this.authService.usuario;
 
-      this.isLoggedIn$ = this.authService.isLoggedIn;
-      this.usuario = this.authService.usuario;
-      this.nombreUsuario = this.usuario.nombre+" "+this.usuario.apellido;   
-  });
-    
+            if(this.usuario.perfiles.length > 0 && Object.keys(this.usuario).length > 0){
+              this.isLogin = true;
+              this.sidenav.open();
+            }else{
+              this.sidenav.close();
+            }
+
+            this.nombreUsuario = this.usuario.nombre+" "+this.usuario.apellido;
+        }
+    });
+
   }
 
   ngOnInit() {
-    
+
   }
 
   cerrarSesion():void{
