@@ -1,0 +1,29 @@
+<div class="content-body">
+    <div class="form-content">
+        <div class="title-form">Parametros de búsqueda</div>
+        <form method="post">
+            <div class="form-body">
+                
+                    <mat-grid-list cols="2" rowHeight="80px">
+                        <mat-grid-tile>
+                            <mat-form-field class="form-field">
+                                <input [(ngModel)]="personal.nombre" type="text" name="nombre" id="nombre" matInput placeholder="Nombre">
+                            </mat-form-field>
+                        </mat-grid-tile>
+                        <mat-grid-tile>
+
+                            <mat-form-field class="form-field">
+                                <input [(ngModel)]="personal.cedula" type="text" name="cedula" id="cedula" matInput placeholder="Cedula">
+                            </mat-form-field>
+
+                        </mat-grid-tile>
+                    </mat-grid-list>
+
+                <div class="example-container my-3">
+                    <button mat-flat-button color="primary" type="submit">Buscar</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

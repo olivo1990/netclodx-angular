@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
   title = 'project-angular';
   public path: string;
   private usuario:Usuario;
-  public nombreUsuario:string;
   public isLogin:boolean;
   constructor(private router: Router,private authService: UsuarioService) {
 
@@ -56,8 +55,6 @@ export class AppComponent implements OnInit {
             }else{
               this.sidenav.close();
             }
-
-            this.nombreUsuario = this.usuario.nombre+" "+this.usuario.apellido;
         }
     });
 

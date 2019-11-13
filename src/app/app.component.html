@@ -14,6 +14,10 @@
                       <mat-icon>menu</mat-icon>
               </button>
 
+              <button type="button" mat-button [routerLink]="['/inicio']">
+                <img src="../assets/imgs/logos/logo_netclodx_letras_blancas.png" style="width: 160px;" alt="">
+              </button>
+
               <span class="example-spacer"></span>
 
               <button type="button" mat-button>
@@ -31,7 +35,7 @@
             <div class="tarjeta-titulo tarjeta-border-bottom">
                 {{ path | titlecase }}
             </div>
-            <div class="tarjeta-cuerpo tarjeta-border-left-right" style="height: 450px;">
+            <div class="tarjeta-cuerpo tarjeta-border-left-right">
                 <router-outlet></router-outlet>
 
                 <!--<div [@routeAnimations]="prepareRoute(outlet)">

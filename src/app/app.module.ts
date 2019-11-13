@@ -22,9 +22,9 @@ import { AlertDialogComponent } from './components/dialog/alert-dialog/alert-dia
 import { FooterComponent } from './components/footer/footer.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { GestorUsuarioComponent } from './components/usuario/gestor-usuario/gestor-usuario.component';
-import { BodyComponent } from './components/body/body.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { PersonalComponent } from './components/personal/personal.component';
 
 
 @NgModule({
@@ -35,9 +35,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     FooterComponent,
     InicioComponent,
     GestorUsuarioComponent,
-    BodyComponent,
     MenuComponent,
-    ProfileComponent
+    ProfileComponent,
+    PersonalComponent
   ],
   imports: [
     BrowserAnimationsModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuServiceService } from '../../services/menu-service.service';
 import { Menu } from '../../models/menu';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -9,8 +10,8 @@ import { Menu } from '../../models/menu';
 })
 export class MenuComponent implements OnInit {
 
-  menu: Menu;
-  menuArreglo: Menu[];
+  private menu: Menu;
+  public menuArreglo = new Array();  
 
   appitems = [
     {
@@ -48,63 +49,85 @@ export class MenuComponent implements OnInit {
     listBackgroundColor: '#f4f9fb',
     fontColor: '#484848',
     backgroundColor: '#f4f9fb',
-    selectedListFontColor: 'red',
+    selectedListFontColor: '#484848',
   };
 
-  constructor(private menuService: MenuServiceService) {
+  constructor(private router: Router,private menuService: MenuServiceService) {
     this.menu = new Menu();
-  }
-
-  ngOnInit() {
     this.menu = this.menuService.menu;
     this.crearMenu(0);
-    if(this.menuArreglo === undefined){
-      this.menuArreglo = [
-        {
-          id: 1,
-          nombre: "Prueba",
-          url: "#",
-          estado: true,
-          icono: "supervisor_account",
-          idPadre: 0,
-          hijos: [
-            {
-              id: 1,
-              nombre: "Prueba",
-              url: "#",
-              estado: true,
-              icono: "supervisor_account",
-              idPadre: 0,
-              hijos: []
-            }
-          ]
-        }
-      ]
+    console.log(this.menuArreglo);
+    if(this.menuArreglo === undefined){  
+      this.menuArreglo = this.appitems;
     }
   }
 
+  ngOnInit() {
+  }
 
   crearMenu(idPadreA:number):void{
-    if(Object.keys(this.menu).length === 0){
-      for (let i in this.menu) {
-        let idMenu:number = this.menu[i]["id"];
-        let idPadreB:number = this.menu[i]["idPadre"];
-        if (idPadreA === idPadreB) {
-          if (idPadreB === 0) {
-            this.menuArreglo = [this.menu[i]];
-            if(this.menuTieneHijos(idMenu) > 0){
+    if(Object.keys(this.menu).length !== 0){
+      if(this.menuTieneHijos(idPadreA) > 0){
+        for (let i in this.menu) {
+          let idMenu:number = this.menu[i]["id"];
+          let idPadreB:number = this.menu[i]["idPadre"];
+          if (idPadreA === idPadreB) {
+            if (idPadreB === 0) {
+              /*this.menuArreglo = [{
+                id: this.menu[i]["id"],
+                label: this.menu[i]["nombre"],
+                link: this.menu[i]["url"],
+                icon: this.menu[i]["icono"]
+              }];*/
+
+              this.menuArreglo.push({'id':this.menu[i]["id"],'label':this.menu[i]["nombre"],'link':this.menu[i]["url"],'icon':this.menu[i]["icono"]});
+             
               this.crearMenu(idMenu);
-            }
-          }else{
-            for (let p in this.menuArreglo) {
-              if(this.menuArreglo[p]["id"] === idPadreA){
-                this.menuArreglo[p]['hijos'] = this.menu[i];
+              
+            }else{
+              if(this.menuTieneHijos(idMenu) > 0){
+                for (let p in this.menuArreglo) {
+
+                  if(this.menuArreglo[p]["id"] == idPadreA){
+                    let arregloHijo = {
+                      id: this.menu[i]["id"],
+                      label: this.menu[i]["nombre"],
+                      link: this.menu[i]["url"],
+                      icon: this.menu[i]["icono"]
+                    }
+
+                    if(this.menuArreglo[p]['items'] !== undefined){
+                      this.menuArreglo[p]['items'].push(arregloHijo);
+                    }else{
+                      this.menuArreglo[p]['items'] = [arregloHijo];
+                    }
+                  }
+                }
+                this.crearMenu(idMenu);
+              }else{
+                for (let p in this.menuArreglo) {
+                  if(this.menuArreglo[p]["id"] == idPadreA){
+                    let arregloHijo = {
+                      id: this.menu[i]["id"],
+                      label: this.menu[i]["nombre"],
+                      link: this.menu[i]["url"],
+                      icon: this.menu[i]["icono"]
+                    }
+
+                    if(this.menuArreglo[p]['items'] !== undefined){
+                      this.menuArreglo[p]['items'].push(arregloHijo);
+                    }else{
+                      this.menuArreglo[p]['items'] = [arregloHijo];
+                    }
+                  }
+                }
               }
             }
-            if(this.menuTieneHijos(idMenu) > 0){
-              this.crearMenu(idMenu);
-            }
           }
+        }
+      }else{
+        for (let i in this.menu) {
+          this.menuArreglo.push({'id':this.menu[i]["id"],'label':this.menu[i]["nombre"],'link':this.menu[i]["url"],'icon':this.menu[i]["icono"]});
         }
       }
     }
@@ -121,8 +144,8 @@ export class MenuComponent implements OnInit {
     return n;
   }
 
-  selectedItem(e):void{
-    console.log(e);
+  selectedItem(event):void{
+    this.router.navigate([event.link]);
   }
 
 }
