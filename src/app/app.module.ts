@@ -7,8 +7,6 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { LayoutModule } from 'angular-admin-lte';    //Loading layout module
-import { BoxModule } from 'angular-admin-lte';       //Box component
 import { NgMaterialMultilevelMenuModule } from 'ng-material-multilevel-menu';
 
 //Servicios Providers
@@ -49,8 +47,6 @@ import { PersonalComponent } from './components/personal/personal.component';
     MDBBootstrapModule.forRoot(),
     HttpClientModule,
     NgbModule,
-    LayoutModule,
-    BoxModule,
     NgMaterialMultilevelMenuModule
   ],
   bootstrap: [

@@ -1,8 +1,8 @@
 
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav [fixedInViewport]="true" mode="side" opened class="example-sidenav">
-    <app-profile></app-profile>
-    <app-menu></app-menu>
+    <app-profile *ngIf="isLogin"></app-profile>
+    <app-menu *ngIf="isLogin"></app-menu>
   </mat-sidenav>
 
   <mat-sidenav-content>
@@ -50,3 +50,15 @@
   </mat-sidenav-content>
 
 </mat-sidenav-container>
+
+<div class="overlay-animation" [ngClass]="{'hiddenOverlay' : ocultarOverlay}">
+  <div class="container-animation">
+      <div class="circle-wrapper">
+          <div class="circle-zero"></div>
+          <div class="circle-one"></div>
+          <div class="circle-two"></div>
+          <div class="circle-three"></div>
+          <div class="circle-shadow"></div>
+      </div>
+  </div>
+</div>

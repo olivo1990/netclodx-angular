@@ -33,23 +33,15 @@ export class LoginComponent implements OnInit {
   mensajeErrorPass:string;
   hide:boolean = true;
   crearCuenta:boolean = false;
-  ocultarOverlay:boolean = false;
 
   constructor(private router:Router, private route:ActivatedRoute, private authService: UsuarioService, private dialog: MatDialog,private _snackBar: MatSnackBar, private menuServices: MenuServiceService) {
     this.usuario = new Usuario();
     //setTimeout(function(){ this.ocultarOverlay = true; }, 3000);
 
-    setTimeout(()=>{
-      this.ocultarOverlay = true;
-    }, 2000);
+
   }
 
   ngOnInit() {
-    this.route.params.subscribe( params =>{
-      if(params["over"] == 0){
-        this.ocultarOverlay = true;
-      }
-    });
 
     if(this.authService.isAuthenticated()){
       this.router.navigate(['/inicio']);
