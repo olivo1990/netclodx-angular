@@ -1,13 +1,12 @@
-.titulo-modal{
+.titulo-modal-alert{
     padding: 10px;
-    border-bottom: 1px solid #e6e6e6;
+    border-bottom: 1px solid;
 }
 
-.cuerpo-modal{
+.cuerpo-modal-alert{
     padding: 10px;
-    color: #696969;
 }
 
-.boton-modal-alert{
+.boton-modal-alert-alert{
     width: 100%;
 }

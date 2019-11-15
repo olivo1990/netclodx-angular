@@ -13,17 +13,17 @@ export class MenuComponent implements OnInit {
 
   private menu: Menu;
   public menuArreglo = new Array();
-  public menu$:Observable<Menu>;  
+  public menu$:Observable<Menu>;
 
   appitems = [];
 
   config = {
     paddingAtStart: true,
-    classname: 'my-custom-class',
-    listBackgroundColor: '#f4f9fb',
-    fontColor: '#484848',
-    backgroundColor: '#f4f9fb',
-    selectedListFontColor: '#484848',
+    classname: 'menu-content',
+    listBackgroundColor: '#082c40',
+    fontColor: '#9ed3ef',
+    backgroundColor: '#082c40',
+    selectedListFontColor: '#9ed3ef',
   };
 
   constructor(private router: Router,private menuService: MenuServiceService,private _changeDetector: ChangeDetectorRef) {
@@ -39,10 +39,10 @@ export class MenuComponent implements OnInit {
     setTimeout(()=>{
       this._changeDetector.detectChanges();
       this.menuArreglo = [];
-      this.menu = this.menuService.menu;  
+      this.menu = this.menuService.menu;
       this.crearMenu(0);
-      if(this.menuArreglo === undefined){  
-        this.menuArreglo = this.appitems; 
+      if(this.menuArreglo === undefined){
+        this.menuArreglo = this.appitems;
       }
     }, 500);
   }
@@ -56,9 +56,9 @@ export class MenuComponent implements OnInit {
           if (idPadreA === idPadreB) {
             if (idPadreB === 0) {
               this.menuArreglo.push({'id':this.menu[i]["id"],'label':this.menu[i]["nombre"],'link':this.menu[i]["url"],'icon':this.menu[i]["icono"]});
-             
+
               this.crearMenu(idMenu);
-              
+
             }else{
               if(this.menuTieneHijos(idMenu) > 0){
                 for (let p in this.menuArreglo) {
