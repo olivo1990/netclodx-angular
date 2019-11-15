@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-
+/* Body */
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #f4f9fb!important; }
 
 .primary {
@@ -182,12 +182,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 }
 
 .profile-content{
-  background-color: #031119!important;
+  background-color: #152d3a!important;
   color: #fff!important;
 }
 
 .profile-content.profile-logo{
-  background-color: #082c40!important;
+  background-color: #1f4458!important;
 }
 
 .profile-content>.profile-padding>.profile-image{
@@ -216,7 +216,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 }
 
 .example-sidenav{
-  background-color: #082c40!important;
+  background-color: #1f4457!important;
 }
 
 .mat-toolbar.mat-primary {
@@ -280,7 +280,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
   color: #9ed3ef!important;
 }
 
-.amml-item[_ngcontent-ias-c13]{
-  border-bottom: 0px solid #9ED3EF!important;
-  border-width: 1px;
+.mat-list-base .mat-list-item .mat-list-item-ripple, .mat-list-base .mat-list-option .mat-list-item-ripple {
+  /*border-bottom: 1px solid #9ED3EF!important;*/
+  border-bottom: none!important;
+}
+
+.mat-list-base {
+  padding-top: 0!important;
+}
+
+.mat-menu-item .mat-icon-no-color, .mat-menu-item-submenu-trigger::after {
+  color: rgb(72, 72, 72)!important;
+}
+
+.anml-data{
+  font-size: 13px;
+}
+
+.amml-icon{
+  font-size: 21px;
 }

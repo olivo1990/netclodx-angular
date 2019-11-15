@@ -2,21 +2,21 @@
   text-align: center;
   height: 64px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   white-space: nowrap;
   padding: 0 16px;
+  justify-content: center;
 }
 
 .profile-content>.profile-padding{
-  padding-top: 7px;
+  padding-top: 15px;
 }
 
 .profile-text{
   text-align: left;
   position: relative;
-  left: 28px;
-  bottom: 3px;
+  left: 10px;
   width: 181px;
 }
 .profile-content>.profile-padding>.profile-image{
@@ -26,7 +26,6 @@
   padding: 10px;
   border-radius: 50%;
   float: left;
-  left: 14px;
 }
 .profile-content>.profile-padding>.profile-image>.profile-ico{
   font-size: 40px;

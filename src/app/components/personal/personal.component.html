@@ -5,17 +5,18 @@
             <div class="form-body">
                 
                     <mat-grid-list cols="2" rowHeight="80px">
+
                         <mat-grid-tile>
-                            <mat-form-field class="form-field">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Nombre</mat-label>
                                 <input [(ngModel)]="personal.nombre" type="text" name="nombre" id="nombre" matInput placeholder="Nombre">
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
-
-                            <mat-form-field class="form-field">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Apellido</mat-label>
                                 <input [(ngModel)]="personal.cedula" type="text" name="cedula" id="cedula" matInput placeholder="Cedula">
                             </mat-form-field>
-
                         </mat-grid-tile>
                     </mat-grid-list>
 

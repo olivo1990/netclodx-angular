@@ -20,9 +20,9 @@ export class MenuComponent implements OnInit {
   config = {
     paddingAtStart: true,
     classname: 'menu-content',
-    listBackgroundColor: '#082c40',
+    listBackgroundColor: '#1f4457',
     fontColor: '#9ed3ef',
-    backgroundColor: '#082c40',
+    backgroundColor: '#1f4457',
     selectedListFontColor: '#9ed3ef',
   };
 
