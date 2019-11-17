@@ -1,6 +1,6 @@
 
-<mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav [fixedInViewport]="true" mode="side" opened class="example-sidenav">
+<mat-sidenav-container class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-sidenav #sidenav [fixedInViewport]="true" class="example-sidenav" [opened] = "!mobileQuery.matches && isLogin ? true : false" [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches">
     <app-profile *ngIf="isLogin"></app-profile>
     <app-menu *ngIf="isLogin"></app-menu>
   </mat-sidenav>
@@ -13,7 +13,9 @@
               <button type="button" mat-button (click)="sidenav.toggle()">
                       <mat-icon>menu</mat-icon>
               </button>
-
+              <mat-toolbar-row>
+                <span style="font-size: 15px;">{{ path | titlecase }}</span>
+              </mat-toolbar-row>
               <span class="example-spacer"></span>
 
               <button type="button" mat-button>
@@ -24,9 +26,9 @@
 
 
     <div class="my-3 mx-auto contenido-componente">
-        <div class="tarjeta" [ngStyle]="{'width': !isLogin ? '460px' : (isLogin ? '100%' : '100%') }">
+        <div class="tarjeta" [ngStyle]="{'width': !isLogin && !mobileQueryComponentlogin.matches ? '460px' : (!isLogin && mobileQueryComponentlogin.matches ? '400px' : (isLogin ? '100%' : '100%')) }">
             <div class="tarjeta-titulo tarjeta-border-bottom">
-                {{ path | titlecase }}
+
             </div>
             <div class="tarjeta-cuerpo tarjeta-border-left-right">
                 <router-outlet></router-outlet>

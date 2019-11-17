@@ -1,27 +1,32 @@
 <div class="content-body">
+    <mat-grid-list cols="1" rowHeight="40px" style="text-align: right;width: 100%;">
+      <button type="button" class="mat-button-icono" mat-flat-button [routerLink]="['/gestor-empleado/form-empleado']" >
+        Crear <mat-icon class="icon-global icon-button">person_add</mat-icon>
+      </button>
+    </mat-grid-list>
     <div class="form-content">
         <div class="title-form">Parametros de búsqueda</div>
         <form method="post">
             <div class="form-body">
-                
+
                     <mat-grid-list cols="2" rowHeight="80px">
 
                         <mat-grid-tile>
                             <mat-form-field appearance="outline">
                                 <mat-label>Nombre</mat-label>
-                                <input [(ngModel)]="personal.nombre" type="text" name="nombre" id="nombre" matInput placeholder="Nombre">
+                                <input [(ngModel)]="empleado.nombre" type="text" name="nombre" id="nombre" matInput placeholder="Nombre">
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
                             <mat-form-field appearance="outline">
                                 <mat-label>Apellido</mat-label>
-                                <input [(ngModel)]="personal.cedula" type="text" name="cedula" id="cedula" matInput placeholder="Cedula">
+                                <input [(ngModel)]="empleado.cedula" type="text" name="cedula" id="cedula" matInput placeholder="Cedula">
                             </mat-form-field>
                         </mat-grid-tile>
                     </mat-grid-list>
 
                 <div class="example-container my-3">
-                    <button mat-flat-button color="primary" type="submit">Buscar</button>
+                    <button mat-raised-button color="primary" type="submit">Buscar</button>
                 </div>
 
             </div>

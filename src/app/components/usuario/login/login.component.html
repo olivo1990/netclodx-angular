@@ -19,7 +19,7 @@
 
           <div class="example-container">
               <mat-form-field>
-                  <mat-icon matPrefix class="rellenar color-dark" [ngStyle]="{'color':!passwordFormControl.hasError('required') ? '#f44236' : '#484848' }">lock</mat-icon>
+                  <mat-icon matPrefix class="rellenar color-dark">lock</mat-icon>
                   <input [(ngModel)]="usuario.password" [type]="hide ? 'password' : 'text'" name="password" id="password" matInput placeholder="Password" required [formControl]="passwordFormControl" [errorStateMatcher]="matcher">
                   <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                       <mat-icon matSuffix class="color-dark">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Personal } from '../../models/personal';
+import { Empleado } from '../../models/empleado';
 
 
 @Component({
@@ -9,10 +9,10 @@ import { Personal } from '../../models/personal';
 })
 export class PersonalComponent implements OnInit {
 
-  public personal:Personal;
+  public empleado:Empleado;
 
-  constructor() { 
-    this.personal = new Personal();
+  constructor() {
+    this.empleado = new Empleado();
   }
 
   ngOnInit() {

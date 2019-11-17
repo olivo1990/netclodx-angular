@@ -9,7 +9,7 @@ import {
  } from '@angular/animations';
  export const slideInAnimation =
     trigger('routeAnimations', [
-        transition('inicioPage => *', [
+        transition('formEmpleadoPage => *', [
             query(':enter, :leave',
                  style({ position: 'fixed', width: '100%' }),
                  { optional: true }),
@@ -26,7 +26,7 @@ import {
                  ], { optional: true }),
             ])
        ]),
-       transition('LoginPage => *', [
+       transition('gestorEmpleadoPage => *', [
             query(':enter, :leave',
                  style({ position: 'fixed',  width: '100%' }),
                  { optional: true }),

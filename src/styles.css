@@ -243,7 +243,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 }
 
 .content-body{
-  padding: 20px 0;
+  padding: 5px 10px 20px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -253,9 +253,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 .content-body>.form-content{
   background-color: #ffffff!important;
   flex-grow: 1;
-  width: 80%;
+  width: 100%;
   border-radius: 4px;
   border: 2px solid #397a9f!important;
+  position: relative;
+  top: 5px;
 }
 
 .form-content>.title-form{
@@ -299,4 +301,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 
 .amml-icon{
   font-size: 21px;
+}
+
+.icon-global{
+  color:#484848;
+}
+
+.icon-button{
+  font-size: 21px;
+}
+.mat-button-icono-volver{
+  padding-left: 5px!important;
+  padding-right: 12px!important;
 }

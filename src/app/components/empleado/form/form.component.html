@@ -1,0 +1,33 @@
+<div class="content-body">
+    <mat-grid-list cols="1" rowHeight="40px" style="text-align: left;width: 100%;">
+      <button type="button" class="mat-button-icono-volver" mat-flat-button [routerLink]="['/gestor-empleado']" >
+        <mat-icon class="icon-global icon-button">navigate_before</mat-icon> Volver
+      </button>
+    </mat-grid-list>
+    <div class="form-content" style="width:70%">
+        <div class="title-form">Parametros de búsqueda</div>
+        <form method="post">
+            <div class="form-body">
+                <mat-grid-list cols="2" rowHeight="80px">
+                    <mat-grid-tile>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nombre</mat-label>
+                            <input [(ngModel)]="empleado.nombre" type="text" name="nombre" id="nombre" matInput placeholder="Nombre">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Apellido</mat-label>
+                            <input [(ngModel)]="empleado.cedula" type="text" name="cedula" id="cedula" matInput placeholder="Cedula">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+                <div class="example-container my-3">
+                    <button mat-raised-button color="primary" type="submit">Buscar</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,8 +1,7 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuServiceService } from '../../services/menu-service.service';
 import { Menu } from '../../models/menu';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
@@ -12,8 +11,6 @@ import { Observable } from 'rxjs';
 export class MenuComponent implements OnInit {
 
   private menu: Menu;
-  public menuArreglo = new Array();
-  public menu$:Observable<Menu>;
 
   appitems = [];
 
@@ -26,9 +23,7 @@ export class MenuComponent implements OnInit {
     selectedListFontColor: '#9ed3ef',
   };
 
-  constructor(private router: Router,private menuService: MenuServiceService,private _changeDetector: ChangeDetectorRef) {
-    this.menu = new Menu();
-    this.menuArreglo = [];
+  constructor(private router: Router,private menuService: MenuServiceService) {
   }
 
   ngOnInit() {
@@ -36,72 +31,7 @@ export class MenuComponent implements OnInit {
   }
 
   cargarMenu():void{
-    setTimeout(()=>{
-      this._changeDetector.detectChanges();
-      this.menuArreglo = [];
-      this.menu = this.menuService.menu;
-      this.crearMenu(0);
-      if(this.menuArreglo === undefined){
-        this.menuArreglo = this.appitems;
-      }
-    }, 500);
-  }
-
-  crearMenu(idPadreA:number):void{
-    if(Object.keys(this.menu).length !== 0){
-
-        for (let i in this.menu) {
-          let idMenu:number = this.menu[i]["id"];
-          let idPadreB:number = this.menu[i]["idPadre"];
-          if (idPadreA === idPadreB) {
-            if (idPadreB === 0) {
-              this.menuArreglo.push({'id':this.menu[i]["id"],'label':this.menu[i]["nombre"],'link':this.menu[i]["url"],'icon':this.menu[i]["icono"]});
-
-              this.crearMenu(idMenu);
-
-            }else{
-              if(this.menuTieneHijos(idMenu) > 0){
-                for (let p in this.menuArreglo) {
-
-                  if(this.menuArreglo[p]["id"] == idPadreA){
-                    let arregloHijo = {
-                      id: this.menu[i]["id"],
-                      label: this.menu[i]["nombre"],
-                      link: this.menu[i]["url"],
-                      icon: this.menu[i]["icono"]
-                    }
-
-                    if(this.menuArreglo[p]['items'] !== undefined){
-                      this.menuArreglo[p]['items'].push(arregloHijo);
-                    }else{
-                      this.menuArreglo[p]['items'] = [arregloHijo];
-                    }
-                  }
-                }
-                this.crearMenu(idMenu);
-              }else{
-                for (let p in this.menuArreglo) {
-                  if(this.menuArreglo[p]["id"] == idPadreA){
-                    let arregloHijo = {
-                      id: this.menu[i]["id"],
-                      label: this.menu[i]["nombre"],
-                      link: this.menu[i]["url"],
-                      icon: this.menu[i]["icono"]
-                    }
-
-                    if(this.menuArreglo[p]['items'] !== undefined){
-                      this.menuArreglo[p]['items'].push(arregloHijo);
-                    }else{
-                      this.menuArreglo[p]['items'] = [arregloHijo];
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-
-    }
+    this.menuService.menuArregloObs();
   }
 
   menuTieneHijos (idPadreA:number):number {
@@ -115,7 +45,7 @@ export class MenuComponent implements OnInit {
     return n;
   }
 
-  selectedItem(event):void{
+  selectedItem(event:any):void{
     this.router.navigate([event.link]);
   }
 

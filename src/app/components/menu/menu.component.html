@@ -1,2 +1,2 @@
-<ng-material-multilevel-menu [configuration]='config' [items]='menuArreglo' (selectedItem)="selectedItem($event)">
-</ng-material-multilevel-menu> 
+<ng-material-multilevel-menu [configuration]='config' [items]='menuService.menuObs$ | async' (selectedItem)="selectedItem($event)">
+</ng-material-multilevel-menu>

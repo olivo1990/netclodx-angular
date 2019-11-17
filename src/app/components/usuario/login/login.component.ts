@@ -1,22 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../../models/usuario';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { Router } from '@angular/router';
+import { FormControl, Validators} from '@angular/forms';
 import { UsuarioService } from '../../../services/usuario-service.service';
 import { MatDialog } from '@angular/material';
 import { AlertDialogComponent } from '../../dialog//alert-dialog/alert-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MenuServiceService } from '../../../services/menu-service.service';
 
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 @Component({
   selector: 'app-login',
@@ -34,11 +25,8 @@ export class LoginComponent implements OnInit {
   hide:boolean = true;
   crearCuenta:boolean = false;
 
-  constructor(private router:Router, private route:ActivatedRoute, private authService: UsuarioService, private dialog: MatDialog,private _snackBar: MatSnackBar, private menuServices: MenuServiceService) {
+  constructor(private router:Router, private authService: UsuarioService, private dialog: MatDialog,private _snackBar: MatSnackBar, private menuServices: MenuServiceService) {
     this.usuario = new Usuario();
-    //setTimeout(function(){ this.ocultarOverlay = true; }, 3000);
-
-
   }
 
   ngOnInit() {
@@ -49,35 +37,27 @@ export class LoginComponent implements OnInit {
   }
 
   usuarioFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
+    Validators.required
   ]);
 
   passwordFormControl = new FormControl('', [
     Validators.required
   ]);
 
-  matcher = new MyErrorStateMatcher();
-
   login():void{
+
+    if(this.usuario.username === undefined || this.usuario.password === undefined){
+      return;
+    }
 
     let titulo:string = "";
     let mensaje:string = "";
 
     this.authService.login(this.usuario).subscribe(response => {
-
       this.authService.guardarUsuario(response.access_token);
       this.authService.guardarToken(response.access_token);
       this.usuario = this.authService.usuario;
-
-
-      titulo = "Muy bien!";
-      mensaje = "Bienvenido "+this.usuario.nombre+" "+this.usuario.apellido;
-      //this.openAlertDialog(titulo, mensaje, false);
-      this.consultarMenu(this.usuario.id);
-      this.openSnackBar(mensaje);
-      this.router.navigate(['/inicio']);
-
+      this.consultarMenu(this.usuario);
     }, err => {
       if (err.status == 400) {
         //swal('Error Login', 'Usuario o clave incorrectas!', 'error');
@@ -94,17 +74,22 @@ export class LoginComponent implements OnInit {
 
   }
 
-  consultarMenu(idUsuario: number):void{
-    this.menuServices.consultarMenu(idUsuario).subscribe(menu => {
+  consultarMenu(usuario:Usuario):void{
+    this.menuServices.consultarMenu(usuario.idPerfil).subscribe(menu => {
+      let mensaje = "Bienvenido "+usuario.nombre+" "+usuario.apellido;
+      this.openSnackBar(mensaje);
       this.menuServices.guardarMenu(menu);
+      this.router.navigate(['/inicio']);
       /*let usuario = this.authService.usuario;*/
     }, error => {
       if(error.status == 400){
+        this.authService.logout();
         this.openAlertDialog("Error del servidor!", "Error desconocido", true);
         //swal('Error Login', 'Usuario o clave incorrecta', 'error');
       }
 
       if(error.status == 404){
+        this.authService.logout();
         this.openAlertDialog("Error del servidor!", "Servicio no encontrado!", true);
         //swal('Error Login', 'Usuario o clave incorrecta', 'error');
       }
@@ -113,7 +98,7 @@ export class LoginComponent implements OnInit {
   }
 
   openAlertDialog(titulo:string, mensaje:string, error:boolean) {
-    const dialogRef = this.dialog.open(AlertDialogComponent,{
+    this.dialog.open(AlertDialogComponent,{
       width: '300px',
       data:{
         title: titulo,

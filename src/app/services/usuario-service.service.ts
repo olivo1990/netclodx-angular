@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../models/usuario';
-import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common/http';
-import { map, catchError, tap } from 'rxjs/operators';
-import { Observable, throwError, BehaviorSubject, Subject } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { URL_SERVICE } from '../config/config';
 
@@ -14,7 +14,7 @@ export class UsuarioService {
   private _token: string;
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient) {
     this._usuario = new Usuario();
   }
 
@@ -98,13 +98,14 @@ export class UsuarioService {
 
   guardarUsuario(accessToken: string): void {
     let payload = this.obtenerDatosToken(accessToken);
+    console.log(payload);
     this._usuario = new Usuario();
     this._usuario.id = payload.id;
     this._usuario.nombre = payload.nombre;
     this._usuario.apellido = payload.apellido;
     this._usuario.correo = payload.email;
     this._usuario.username = payload.user_name;
-    this._usuario.perfiles = payload.authorities;
+    this._usuario.idPerfil = payload.idPerfil;
     sessionStorage.setItem('usuario', JSON.stringify(this._usuario));
   }
 
@@ -129,12 +130,12 @@ export class UsuarioService {
     return false;
   }
 
-  hasRole(role: string): boolean {
+  /*hasRole(role: string): boolean {
     if (this._usuario.perfiles.includes(role)) {
       return true;
     }
     return false;
-  }
+  }*/
 
   logout(): void {
     this._token = null;
